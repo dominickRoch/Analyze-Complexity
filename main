@@ -1,0 +1,29 @@
+#include <stdio.h>
+#include <string.h>
+
+void analyzeComplexity(char code[]) {
+    int complexity = 1;  // assumes O(1) complexity as default
+
+    if (strstr(code, "for") != NULL || strstr(code, "while") != NULL) {
+        complexity = 2;  // increases to O(n) if there are loops
+    }
+
+    if (strstr(code, "if") != NULL || strstr(code, "else") != NULL) {
+        complexity += 1;  // increases to O(n+1) if there are conditional structures
+    }
+
+    // Print the resulting
+    printf("Best Case Complexity: O(1)\n");
+    printf("Worst Case Complexity: O(%d)\n", complexity);
+}
+
+int main() {
+    char code[1000];
+
+    printf("Enter the code in text:\n");
+    fgets(code, sizeof(code), stdin);
+
+    analyzeComplexity(code);
+
+    return 0;
+}
